@@ -1,41 +1,111 @@
 # Call Center Network Diagnostic Tool
 
-## Purpose
+A PowerShell-based network diagnostic and monitoring tool designed to identify intermittent connectivity issues across CRM, Citrix, VPN, VoIP, firewall, and ISP infrastructure.
 
-This PowerShell diagnostic tool is designed to troubleshoot intermittent CRM and VOIP connectivity issues in a call center environment using:
+The tool continuously monitors network health and automatically collects diagnostic evidence when packet loss, latency spikes, route failures, service interruptions, or MTU issues are detected.
+
+---
+
+## Features
+
+### Connectivity Monitoring
+
+Continuously verifies connectivity between the endpoint and critical infrastructure:
 
 * FortiGate Firewall
-* ISP
-* Mobile 4G/5G Backup Router
-* Citrix CRM Infrastructure
-* Pulse Secure VPN
-* VOIP / SIP Services
-* Fortinet Switching Infrastructure
+* Provider Router / ISP Gateway
+* Mobile Backup Router
+* CRM / Citrix Server
+* VoIP / SIP Server
 
-The tool continuously monitors connectivity and automatically collects detailed diagnostics when packet loss, latency spikes, or service interruptions are detected.
+### Service Availability Checks
+
+Validates TCP connectivity for:
+
+* Citrix ICA (1494)
+* Citrix Session Reliability / CGP (2598)
+* Citrix Gateway / SSL (443)
+* SIP Services (5060 / 5061)
+
+### Latency Monitoring
+
+Measures round-trip latency and detects:
+
+* Network congestion
+* Routing instability
+* ISP performance degradation
+* VPN performance issues
+
+### Packet Loss Detection
+
+Automatically identifies:
+
+* Connection drops
+* Packet loss
+* Service interruptions
+* Network instability
+
+### Route Analysis
+
+Collects:
+
+* Traceroute results
+* Route table information
+* Active routing paths
+* Hop-by-hop diagnostics
+
+### DNS Diagnostics
+
+Captures:
+
+* DNS client configuration
+* DNS server assignments
+* Hostname resolution results
+
+### MTU & Fragmentation Analysis
+
+Tests packet sizes to identify:
+
+* MTU mismatches
+* Fragmentation issues
+* VPN overhead limitations
+* Citrix/Pulse Secure tunnel constraints
 
 ---
 
-# Typical Symptoms This Tool Helps Investigate
+# Typical Issues Investigated
 
-* CRM freezes for 30–60 seconds and then reconnects.
-* Citrix sessions become unresponsive.
-* Pulse Secure disconnects and reconnects.
-* MicroSIP loses registration.
-* Some agents lose connectivity while others remain connected.
-* Entire call center loses CRM access simultaneously.
-* VOIP calls experience one-way audio or call drops.
-* Random latency spikes during business hours.
+This tool is useful for troubleshooting:
+
+* CRM freezes for 30–60 seconds and then recovers
+* Citrix session instability
+* Pulse Secure disconnects
+* VPN tunnel interruptions
+* SIP registration failures
+* VoIP call quality issues
+* One-way audio problems
+* Random latency spikes
+* ISP routing problems
+* MTU and fragmentation issues
 
 ---
 
-# Before Running The Script
+# Prerequisites
 
-## Step 1 – Identify Infrastructure IP Addresses
+* Windows 10 / Windows 11
+* PowerShell 5.1+
+* Local Administrator privileges
+* Network access to monitored systems
 
-Open CMD as Administrator.
+Run PowerShell as Administrator.
 
-### Find Local Gateway
+---
+
+# Initial Discovery
+
+Before configuring the script, identify the required infrastructure IP addresses.
+
+## Local Network Information
 
 ```cmd
 ipconfig /all
@@ -47,31 +117,23 @@ Record:
 * Default Gateway
 * DNS Servers
 
-Usually:
-
-```text
-Default Gateway = FortiGate
-```
-
 ---
 
-### View Routing Table
+## Routing Information
 
 ```cmd
 route print
 ```
 
-Record:
+Identify:
 
 ```text
-0.0.0.0 -> Gateway
+0.0.0.0 -> Default Gateway
 ```
-
-This shows the active internet path.
 
 ---
 
-### Find Citrix CRM Server
+## Citrix / CRM Server Discovery
 
 Open CRM and run:
 
@@ -79,7 +141,7 @@ Open CRM and run:
 netstat -ano | findstr ESTABLISHED
 ```
 
-Check for:
+Look for Citrix-related ports:
 
 ```text
 1494
@@ -95,9 +157,9 @@ Example:
 
 ---
 
-### Find VOIP Server
+## VoIP / SIP Server Discovery
 
-While MicroSIP is running:
+While the softphone is active:
 
 ```cmd
 netstat -ano | findstr :5060
@@ -108,35 +170,28 @@ Record the SIP server address.
 
 ---
 
-## Step 2 – Update Script Configuration
+# Configuration
 
-Update:
-
-```powershell
-CRMHost
-VoipHost
-FortiGate
-BezeqRouter
-MobileRouter
-```
-
-Example:
+Update the configuration section inside the script:
 
 ```powershell
-CRMHost     = "8.200.80.113"
-VoipHost    = "192.168.1.50"
-FortiGate   = "192.168.1.1"
-BezeqRouter = "192.168.1.254"
-MobileRouter = "192.168.2.1"
+CRMHost        = "8.200.80.113"
+CRMPort        = 1494
+CRMPortCGP     = 2598
+
+VoipHost       = "192.168.1.50"
+VoipPort       = 5060
+
+FortiGate      = "192.168.1.1"
+ProviderRouter = "192.168.1.254"
+MobileRouter   = "192.168.2.1"
 ```
 
 ---
 
-# Running The Tool
+# Running the Tool
 
-Open PowerShell as Administrator.
-
-Allow script execution:
+Allow script execution for the current PowerShell session:
 
 ```powershell
 Set-ExecutionPolicy Bypass -Scope Process
@@ -150,159 +205,75 @@ Run:
 
 ---
 
-# What The Tool Checks
+# What Happens During Monitoring
 
-## Connectivity
+Every monitoring cycle the tool:
 
-Every second the tool verifies:
+1. Tests ICMP connectivity
+2. Measures latency
+3. Verifies service ports
+4. Records results to CSV
+5. Detects failures and threshold breaches
 
-```text
-Endpoint -> FortiGate
-Endpoint -> Provider Router
-Endpoint -> Mobile Router
-Endpoint -> CRM Server
-Endpoint -> VOIP Server
-```
+When a problem is detected, the tool automatically collects:
 
----
-
-## TCP Service Availability
-
-Checks:
-
-```text
-Citrix ICA         1494
-Citrix CGP         2598
-VOIP SIP           5060
-```
+* IP configuration
+* DNS configuration
+* Routing table
+* Active TCP connections
+* Citrix-related connections
+* Traceroute results
+* PathPing packet-loss analysis
+* MTU tests
+* Route tracing information
 
 ---
 
-## Latency Monitoring
-
-Measures round-trip latency.
-
-Default threshold:
-
-```text
-300ms
-```
-
-Values above threshold trigger diagnostics.
-
----
-
-## Packet Loss Monitoring
-
-Detects:
-
-```text
-Lost packets
-Connection failures
-Timeouts
-```
-
----
-
-## Route Analysis
-
-Automatically executes:
-
-```cmd
-tracert
-```
-
-to identify the hop where traffic fails.
-
----
-
-## Packet Loss By Hop
-
-Automatically executes:
-
-```cmd
-pathping
-```
-
-to identify:
-
-```text
-Switch
-FortiGate
-ISP
-Datacenter
-CRM Provider
-```
-
-packet loss locations.
-
----
-
-## MTU / Fragmentation Testing
-
-Checks packet sizes from:
-
-```text
-1200 bytes
-up to
-1500 bytes
-```
-
-Useful for:
-
-```text
-Pulse Secure
-Citrix
-VPN tunnels
-SSL encapsulation
-FortiGate inspection
-```
-
----
-
-# Generated Files
+# Output Files
 
 ## Diagnostic Log
 
 ```text
-network_diag_<computer>.log
+network_diag_<computer>_<timestamp>.log
 ```
 
 Contains:
 
-* Route information
-* Traceroute results
-* PathPing results
-* MTU tests
-* TCP connection snapshots
+* Diagnostic dumps
+* Route analysis
+* DNS information
+* MTU results
+* Connection snapshots
+* Packet-loss analysis
 
 ---
 
 ## Monitoring CSV
 
 ```text
-network_samples_<computer>.csv
+network_samples_<computer>_<timestamp>.csv
 ```
 
 Contains:
 
 * Timestamp
-* Latency
-* Packet loss
-* Service status
-* TCP availability
+* Connectivity status
+* Latency measurements
+* Service availability
+* Monitoring results
 
-Can be imported into:
+Compatible with:
 
-* Excel
+* Microsoft Excel
 * Power BI
 * Looker Studio
+* CSV Analytics Tools
 
 ---
 
 # Interpreting Results
 
-## FortiGate Fails
+## FortiGate Failure
 
 ```text
 FortiGate = FAIL
@@ -310,15 +281,15 @@ CRM = FAIL
 VOIP = FAIL
 ```
 
-Likely:
+Possible causes:
 
-* Switch issue
 * Local network issue
-* FortiGate issue
+* Switch failure
+* FortiGate problem
 
 ---
 
-## ISP Fails
+## Provider Failure
 
 ```text
 FortiGate = OK
@@ -326,15 +297,15 @@ CRM = FAIL
 VOIP = FAIL
 ```
 
-Likely:
+Possible causes:
 
-* Bezeq outage
+* ISP outage
 * Routing issue
-* Provider issue
+* Provider instability
 
 ---
 
-## CRM Only Fails
+## CRM Failure Only
 
 ```text
 FortiGate = OK
@@ -342,62 +313,74 @@ VOIP = OK
 CRM = FAIL
 ```
 
-Likely:
+Possible causes:
 
 * Citrix infrastructure issue
 * CRM provider issue
-* Pulse Secure tunnel issue
+* VPN tunnel instability
 
 ---
 
-## VOIP Only Fails
+## VoIP Failure Only
 
 ```text
 CRM = OK
 VOIP = FAIL
 ```
 
-Likely:
+Possible causes:
 
 * SIP provider issue
-* NAT issue
-* VOIP router issue
+* NAT problem
+* PBX issue
+* VoIP routing issue
 
 ---
 
-## MTU Failures
+## MTU / Fragmentation Issues
 
-If:
+Example:
 
 ```text
 1472 FAIL
 1360 OK
 ```
 
-Likely:
+Possible causes:
 
 * VPN overhead
 * MTU mismatch
-* Fragmentation problem
+* Packet fragmentation
+* Tunnel encapsulation limits
 
 ---
 
 # Recommended Deployment
 
-Run the tool on:
+For large environments, deploy the tool on:
 
-* Agent workstation
-* Supervisor workstation
-* IT workstation
-* One workstation per switch stack
+* Agent workstations
+* Supervisor workstations
+* IT administration workstations
+* Different switch segments or VLANs
 
-Compare timestamps between logs to determine whether the outage affects:
+Comparing timestamps across multiple endpoints helps determine whether an outage affects:
 
 ```text
-Single PC
-Single switch
-Entire VLAN
-Entire call center
-External provider
-CRM datacenter
+Single Endpoint
+Switch Segment
+VLAN
+Entire Site
+ISP Connectivity
+VPN Infrastructure
+CRM Datacenter
+VoIP Provider
 ```
+
+---
+
+# Disclaimer
+
+This tool is intended for troubleshooting, diagnostics, and operational monitoring.
+
+Always validate findings before making production infrastructure changes.
