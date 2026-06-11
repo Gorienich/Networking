@@ -3,7 +3,10 @@
 A practical networking laboratory containing real-world troubleshooting guides, monitoring tools, PowerShell automation, infrastructure documentation, and diagnostic workflows used in production environments.
 
 The repository focuses on hands-on network operations, connectivity analysis, security appliances, VPN technologies, VoIP infrastructure, Citrix environments, routing, switching, and performance troubleshooting.
-you can use learn base: [Networking engineer](https://roadmap.sh/network-engineer)
+you can use learn base: 
+[Networking engineer](https://roadmap.sh/network-engineer)
+[Cisco Pocket tracer + Linux] (https://www.netacad.com/resources/lab-downloads?courseLang=en-US))
+
 ---
 
 ## Purpose
