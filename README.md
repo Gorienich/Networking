@@ -8,7 +8,7 @@ You can use learning base:<br>
 
 [Networking Engineer roadmap](https://roadmap.sh/network-engineer) | 
 [Cisco Packet Tracer](https://www.netacad.com/resources/lab-downloads?courseLang=en-US) | 
-[Wireshark](https://www.wireshark.org/download.html) | [Pentest-tools](https://pentest-tools.com/alltools#exploitation-tools)
+[Wireshark](https://www.wireshark.org/download.html) | [Pentest-tools](https://pentest-tools.com/alltools#exploitation-tools) | [vmware]https://www.vmware.com/)
 
 
 
