@@ -1,4 +1,4 @@
-#[Networking Lab][https://roadmap.sh/network-engineer]
+#[Networking Lab](https://roadmap.sh/network-engineer)
 
 A practical networking laboratory containing real-world troubleshooting guides, monitoring tools, PowerShell automation, infrastructure documentation, and diagnostic workflows used in production environments.
 
