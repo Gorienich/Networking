@@ -6,7 +6,7 @@ The repository focuses on hands-on network operations, connectivity analysis, se
 
 You can use learning base:<br>
 
-[Networking Engineer](https://roadmap.sh/network-engineer)  
+[Networking Engineer roadmap](https://roadmap.sh/network-engineer)  
 [Cisco Packet Tracer](https://www.netacad.com/resources/lab-downloads?courseLang=en-US)
 
 ---
