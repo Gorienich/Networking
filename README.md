@@ -33,9 +33,62 @@ This repository serves as a centralized knowledge base for:
 The goal is to document practical solutions and reusable tools based on real production scenarios rather than theoretical examples.
 
 ---
+# Recommended Learning Path
+
+CCNA
+│
+├── Packet Tracer
+│
+├── Wireshark
+│
+├── Windows Networking
+│
+└── Basic PowerShell
+│
+CCNP
+│
+├── GNS3
+├── EVE-NG
+├── FortiGate
+├── Citrix
+├── VPN
+├── VoIP
+└── Automation
+│
+CCIE
+│
+├── Enterprise Design
+├── MPLS
+├── BGP
+├── SD-WAN
+├── Multi-Vendor Labs
+└── Large Scale Troubleshooting
+│
+Security
+│
+├── OWASP
+├── MITRE ATT&CK
+├── NIST
+├── Wireshark
+├── Vulnerability Assessment
+└── Penetration Testing
+
+---
 
 ## Lab Areas
+# Network Lab Platforms
 
+| Platform | Difficulty | Best For | Certification Level |
+|-----------|-----------|-----------|-----------|
+| Cisco Packet Tracer | Beginner | Networking fundamentals | CCNA |
+| GNS3 | Intermediate | Real Cisco labs | CCNA / CCNP |
+| EVE-NG | Advanced | Enterprise multi-vendor labs | CCNP / CCIE |
+| Mininet | Advanced | SDN and OpenFlow | CCNP / Research |
+| NS-3 | Advanced | Network simulation and protocol research | Research |
+| OMNeT++ | Advanced | Academic simulation | Research |
+| NetSim | Intermediate | Protocol learning and training | CCNA / CCNP |
+| OPNET (Riverbed Modeler) | Expert | Enterprise network modeling | Enterprise |
+| QualNet | Expert | Military and wireless simulations | Research |
 ### Network Monitoring
 
 Tools and procedures for:
