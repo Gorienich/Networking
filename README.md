@@ -1,16 +1,36 @@
-## Networking Lab
+# Networking Lab
 
-A practical networking laboratory containing real-world troubleshooting guides, monitoring tools, PowerShell automation, infrastructure documentation, and diagnostic workflows used in production environments.
+A practical networking and security laboratory focused on real-world troubleshooting, infrastructure operations, network monitoring, automation, and enterprise technologies.
 
-The repository focuses on hands-on network operations, connectivity analysis, security appliances, VPN technologies, VoIP infrastructure, Citrix environments, routing, switching, and performance troubleshooting.
+This repository combines hands-on labs, production-inspired investigations, PowerShell tooling, monitoring workflows, security research, and operational runbooks.
 
-You can use learning base: [Networking Engineer roadmap](https://roadmap.sh/network-engineer)<br>
+Topics range from CCNA fundamentals through CCNP/CCIE-level troubleshooting, including Cisco, FortiGate, Citrix, VPNs, VoIP, network security, and penetration testing.
 
-[gns3](https://www.gns3.com/software/download) | 
-[Wireshark](https://www.wireshark.org/download.html) | [Pentest-tools](https://pentest-tools.com/alltools#exploitation-tools) | [vmware](https://www.vmware.com/)
+---
 
+## Learning Resources
 
+### Networking
 
+* https://roadmap.sh/network-engineer
+* https://learningnetwork.cisco.com
+* https://www.gns3.com
+* https://www.eve-ng.net
+* https://www.wireshark.org
+
+### Security
+
+* https://owasp.org
+* https://attack.mitre.org
+* https://csrc.nist.gov
+* https://pentest-tools.com
+* https://www.pentest-standard.org
+
+### Virtualization & Labs
+
+* https://www.vmware.com
+* https://www.virtualbox.org
+* https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server
 
 ---
 
@@ -18,89 +38,188 @@ You can use learning base: [Networking Engineer roadmap](https://roadmap.sh/netw
 
 This repository serves as a centralized knowledge base for:
 
-* Network troubleshooting
-* Infrastructure diagnostics
-* Connectivity monitoring
-* Performance analysis
-* VPN and remote access technologies
-* Citrix environments
-* VoIP systems
-* Firewall administration
-* Automation and scripting
-* Incident investigation
-* Operational runbooks
+* Network Troubleshooting
+* Infrastructure Diagnostics
+* Connectivity Monitoring
+* Performance Analysis
+* Routing & Switching
+* Firewall Administration
+* VPN Technologies
+* Citrix Environments
+* VoIP Infrastructure
+* Security Assessments
+* Automation & Scripting
+* Incident Investigation
+* Operational Runbooks
 
-The goal is to document practical solutions and reusable tools based on real production scenarios rather than theoretical examples.
+The goal is to document practical solutions, reusable tools, and proven troubleshooting methodologies based on real-world environments rather than theoretical examples.
 
 ---
-# Recommended Learning Path
 
-CCNA
+## Repository Structure
+
+```text
+Networking/
 │
-├── Packet Tracer
+├── Fundamentals/
+│   ├── OSI
+│   ├── TCP-IP
+│   ├── IPv4
+│   ├── IPv6
+│   └── Subnetting
 │
-├── Wireshark
+├── Routing-Switching/
+│   ├── VLANs
+│   ├── STP
+│   ├── OSPF
+│   ├── BGP
+│   └── MPLS
 │
-├── Windows Networking
+├── Firewalls/
+│   ├── FortiGate
+│   ├── NAT
+│   ├── Policies
+│   └── VPN
 │
-└── Basic PowerShell
+├── Citrix/
 │
-CCNP
+├── VoIP/
 │
-├── GNS3
-├── EVE-NG
-├── FortiGate
-├── Citrix
-├── VPN
-├── VoIP
-└── Automation
+├── Monitoring/
 │
-CCIE
+├── Automation/
 │
-├── Enterprise Design
-├── MPLS
-├── BGP
-├── SD-WAN
-├── Multi-Vendor Labs
-└── Large Scale Troubleshooting
+├── Security/
 │
-Security
-│
-├── OWASP
-├── MITRE ATT&CK
-├── NIST
-├── Wireshark
-├── Vulnerability Assessment
-└── Penetration Testing
+└── Documentation/
+```
+
+---
+
+## Network Lab Platforms
+
+| Platform                 | Difficulty   | Primary Use Case                        | Recommended Level |
+| ------------------------ | ------------ | --------------------------------------- | ----------------- |
+| Cisco Packet Tracer      | Beginner     | Networking fundamentals                 | CCNA              |
+| GNS3                     | Intermediate | Real Cisco networking labs              | CCNA / CCNP       |
+| EVE-NG                   | Advanced     | Enterprise multi-vendor labs            | CCNP / CCIE       |
+| Mininet                  | Advanced     | SDN and OpenFlow environments           | Advanced          |
+| NS-3                     | Advanced     | Network simulation and protocol testing | Research          |
+| OMNeT++                  | Advanced     | Academic and protocol simulation        | Research          |
+| NetSim                   | Intermediate | Training and protocol learning          | CCNA / CCNP       |
+| OPNET (Riverbed Modeler) | Expert       | Enterprise network modeling             | Enterprise        |
+| QualNet                  | Expert       | Wireless and military-grade simulations | Research          |
+
+---
+
+## Recommended Learning Path
+
+### CCNA Foundation
+
+Focus Areas:
+
+* OSI Model
+* TCP/IP
+* IPv4 & IPv6
+* Subnetting
+* VLANs
+* Trunking
+* STP
+* Routing Fundamentals
+* DHCP
+* DNS
+* NAT
+
+Tools:
+
+* Cisco Packet Tracer
+* Wireshark
+* Windows Networking Tools
+
+---
+
+### CCNP Enterprise
+
+Focus Areas:
+
+* OSPF
+* BGP
+* Advanced Switching
+* VPN Technologies
+* Enterprise Troubleshooting
+* Network Monitoring
+* FortiGate Administration
+* Citrix Infrastructure
+* VoIP Systems
+* Automation
+
+Tools:
+
+* GNS3
+* EVE-NG
+* FortiGate VM
+* Hyper-V
+* VMware
+
+---
+
+### CCIE Enterprise
+
+Focus Areas:
+
+* Enterprise Architecture
+* MPLS
+* SD-WAN
+* Large Scale Routing
+* Multi-Vendor Integration
+* High Availability
+* Network Design
+* Advanced Troubleshooting
+
+Tools:
+
+* EVE-NG
+* Multi-Vendor Virtual Labs
+* Enterprise Monitoring Platforms
+
+---
+
+### Security & Penetration Testing
+
+Focus Areas:
+
+* Network Hardening
+* Vulnerability Assessment
+* Threat Modeling
+* MITRE ATT&CK
+* OWASP Methodologies
+* Security Monitoring
+* Penetration Testing
+* Traffic Analysis
+
+Tools:
+
+* Wireshark
+* Kali Linux
+* Pentest Tools
+* OWASP Resources
+* NIST Frameworks
 
 ---
 
 ## Lab Areas
-# Network Lab Platforms
 
-| Platform | Difficulty | Best For | Certification Level |
-|-----------|-----------|-----------|-----------|
-| Cisco Packet Tracer | Beginner | Networking fundamentals | CCNA |
-| GNS3 | Intermediate | Real Cisco labs | CCNA / CCNP |
-| EVE-NG | Advanced | Enterprise multi-vendor labs | CCNP / CCIE |
-| Mininet | Advanced | SDN and OpenFlow | CCNP / Research |
-| NS-3 | Advanced | Network simulation and protocol research | Research |
-| OMNeT++ | Advanced | Academic simulation | Research |
-| NetSim | Intermediate | Protocol learning and training | CCNA / CCNP |
-| OPNET (Riverbed Modeler) | Expert | Enterprise network modeling | Enterprise |
-| QualNet | Expert | Military and wireless simulations | Research |
 ### Network Monitoring
 
 Tools and procedures for:
 
-* Latency monitoring
-* Packet loss detection
-* Availability checks
-* Route analysis
-* Path monitoring
-* Service monitoring
-* Infrastructure health checks
-
+* Latency Monitoring
+* Packet Loss Detection
+* Route Analysis
+* Availability Monitoring
+* Service Monitoring
+* Infrastructure Health Checks
+* Performance Baselines
 
 ---
 
@@ -108,14 +227,15 @@ Tools and procedures for:
 
 Topics related to:
 
-* Layer 2 switching
+* Layer 2 Switching
 * VLANs
 * Trunking
 * STP
-* Routing
-* Default gateways
+* OSPF
+* BGP
+* Routing Design
 * Redundancy
-* Infrastructure design
+* High Availability
 
 ---
 
@@ -126,11 +246,11 @@ Infrastructure and security-focused documentation:
 * FortiGate
 * FortiSwitch
 * NAT
-* Security policies
-* Traffic inspection
-* SSL inspection
-* VPN technologies
-* Access control
+* Security Policies
+* Traffic Inspection
+* SSL Inspection
+* Access Control
+* VPN Technologies
 
 ---
 
@@ -138,41 +258,55 @@ Infrastructure and security-focused documentation:
 
 Technologies and troubleshooting:
 
-* Pulse Secure
 * SSL VPN
 * IPsec VPN
-* Split tunneling
-* Full tunneling
-* MTU issues
-* Session stability
+* Split Tunneling
+* Full Tunneling
+* MTU Issues
+* Session Stability
+* Remote Connectivity
 
 ---
 
 ### Citrix
 
-Citrix-specific operational documentation:
+Operational and troubleshooting documentation:
 
-* ICA connectivity
+* ICA Connectivity
 * Session Reliability
 * CGP
 * StoreFront
 * Citrix Gateway
-* Citrix troubleshooting
-* Performance analysis
+* Performance Analysis
+* Connectivity Diagnostics
 
 ---
 
 ### VoIP
 
-Voice infrastructure diagnostics and monitoring:
+Voice infrastructure diagnostics:
 
 * SIP
 * RTP
-* MicroSIP
-* PBX connectivity
-* Registration issues
-* Audio quality troubleshooting
-* Network quality analysis
+* PBX Connectivity
+* Registration Issues
+* Audio Quality Analysis
+* Call Stability
+* Network Quality Monitoring
+
+---
+
+### Security & Assessment
+
+Topics related to:
+
+* Vulnerability Assessment
+* Security Auditing
+* Threat Analysis
+* MITRE ATT&CK
+* OWASP Testing
+* Security Monitoring
+* Penetration Testing Labs
 
 ---
 
@@ -181,36 +315,52 @@ Voice infrastructure diagnostics and monitoring:
 Operational automation and scripting:
 
 * PowerShell
-* Windows networking
-* Monitoring scripts
-* Reporting tools
-* Log collection
-* Automated diagnostics
-
+* Windows Networking
+* Monitoring Scripts
+* Log Collection
+* Automated Diagnostics
+* Infrastructure Automation
 
 ---
 
-## Technologies
+## Technologies & Platforms
 
 ### Network Infrastructure
 
-* FortiGate
-* FortiSwitch
 * Cisco
+* Fortinet
 * MikroTik
-* Layer 2 / Layer 3 Networks
-
-### Remote Access
-
-* Pulse Secure
-* SSL VPN
-* IPsec VPN
+* Layer 2 Networks
+* Layer 3 Networks
 
 ### Virtualization
 
 * Hyper-V
+* VMware
+* Virtual Appliances
 
-### Remote Application Delivery
+### Monitoring & Analysis
+
+* Wireshark
+* PathPing
+* Tracert
+* Netstat
+* PowerShell Diagnostics
+
+### Security
+
+* OWASP
+* MITRE ATT&CK
+* NIST
+* Pentest Tools
+
+### Remote Access
+
+* SSL VPN
+* IPsec VPN
+* Pulse Secure
+
+### Application Delivery
 
 * Citrix Workspace
 * ICA
@@ -242,12 +392,13 @@ All content in this repository is based on practical investigation and operation
 
 The focus is on:
 
-* Reproducible troubleshooting
-* Root cause analysis
-* Monitoring methodologies
-* Infrastructure visibility
-* Operational reliability
-* Documentation quality
+* Reproducible Troubleshooting
+* Root Cause Analysis
+* Monitoring Methodologies
+* Infrastructure Visibility
+* Operational Reliability
+* Documentation Quality
+* Security Awareness
 
 Every guide, script, and procedure should help answer a single question:
 
@@ -257,6 +408,8 @@ Every guide, script, and procedure should help answer a single question:
 
 ## Disclaimer
 
-This repository is intended for educational, testing, laboratory, and operational documentation purposes.
+This repository is intended for educational, laboratory, research, testing, and operational documentation purposes.
 
-Always validate configurations and procedures in a controlled environment before applying changes to production systems.
+Always validate configurations, scripts, and procedures in a controlled environment before applying changes to production systems.
+
+The repository owner is not responsible for any damage, service interruption, security impact, or data loss resulting from the use of the provided materials.
